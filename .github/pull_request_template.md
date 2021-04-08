@@ -24,3 +24,7 @@
 #### How to test:
 
 <!-- Change it appropriately in the form of points -->
+
+#### Screenshots:
+
+<!-- Add relavent screen shots here-->
