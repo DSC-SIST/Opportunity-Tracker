@@ -9,9 +9,9 @@ Presenting Opportunity Tracker, the solution to all the times you wish you had a
 
 - HTML
 - CSS
-- Flutter
-- JSON
-- Firebase 
+- REact
+- Nodejs
+- mongoDB
 
 ## Project Lead
 
