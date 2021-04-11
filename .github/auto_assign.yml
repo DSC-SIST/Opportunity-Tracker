@@ -6,7 +6,7 @@ addAssignees: author
 # Reviewer must have admin permission
 reviewers: 
   - AvinashMahanthi
-#  - Reviewer 2 
+  - AkashM398 
 
 skipKeywords:
   - wip
