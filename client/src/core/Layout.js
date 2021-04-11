@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/Helpers";
-import './css/nav.css'
 
 
 const Layout = ({ children, match, history }) => {
