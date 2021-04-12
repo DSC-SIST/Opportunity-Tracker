@@ -1,15 +1,19 @@
 # Opportunity-Tracker
+
 ![Opportunity-Tracker](https://socialify.git.ci/DSC-SIST/Opportunity-Tracker/image?description=1&font=Raleway&forks=1&issues=1&language=1&logo=https%3A%2F%2Fi.imgur.com%2FZvXu8gj.png&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark)
 
-Have you ever wanted to know all the upcoming opportunities on your fingertips? Or perhaps you wanted to have a unified platform where you can view all the upcoming opportunities that you can possibly capitalize on?
+Have you ever wanted to know all the upcoming opportunities on your fingertips?
+Or perhaps you wanted to have a unified platform where you can view all the upcoming
+opportunities that you can possibly capitalize on?
 
-Presenting Opportunity Tracker, the solution to all the times you wish you had a platform to come across new opportunities coming up ✨
+Presenting Opportunity Tracker, the solution to all the times you wish you had a
+platform to come across new opportunities coming up ✨
 
 ## Technology Stack 
 
 - HTML
 - CSS
-- REact
+- React
 - Nodejs
 - mongoDB
 
@@ -19,3 +23,12 @@ Presenting Opportunity Tracker, the solution to all the times you wish you had a
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                                                                      **[Avinash Mahanthi](https://www.linkedin.com/in/avinash-mahanthi/)**                                                                                       |
 | <a href="https://www.linkedin.com/in/avinash-mahanthi/"><img src="https://mpng.subpng.com/20180324/vhe/kisspng-linkedin-computer-icons-logo-social-networking-ser-facebook-5ab6ebfe5f5397.2333748215219374063905.jpg" width="32px" height="32px"></a> |
+
+## Contributors :sparkles:
+
+Special thanks for all the people who had helped this project so far! You can find the
+complete list over [here](CONTRIBUTORS.md).
+
+## License :scroll:
+
+This project follows the [MIT](LICENSE) License.
