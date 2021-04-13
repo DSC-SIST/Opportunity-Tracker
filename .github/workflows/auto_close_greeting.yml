@@ -1,0 +1,18 @@
+name: Greetings
+
+on:
+  issues:
+    types: [closed]
+  pull_request:
+    types: [closed]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == false }}
+    steps:
+    - uses: Manoj-Paramsetti/Greeting-action@main
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        issue_message: 'Thank you for taking out your time to raise an issue.<br>This issue is closed by @${{github.actor}} 🤗'
+        PR_message: Thank you for taking out your time and tried to contribute to **Opportunity Tracker** repository.<br>We are sorry to say that this pull request is closed by @${{github.actor}} without merging.<br>Don't lose the hope 💪
