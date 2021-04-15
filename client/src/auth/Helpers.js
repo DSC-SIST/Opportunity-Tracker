@@ -77,3 +77,17 @@ export const signout = next=>{
 
     next();
 }
+
+
+// update user dat in cookie on profile update
+export const updateUser = (response, next) => {
+
+    if(typeof window !== 'undefined'){
+        var auth = JSON.parse(localStorage.getItem('user'));
+        auth = response.data;
+
+        localStorage.setItem('user',JSON.stringify(auth));
+        
+    }
+    next() 
+}

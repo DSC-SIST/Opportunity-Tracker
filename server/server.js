@@ -6,13 +6,14 @@ import  cors from 'cors';
 import  dotenv from 'dotenv';
 import authRoutes from './routes/auth.js' ;
 import userRoutes from './routes/user.js';
-import postRoutes from './routes/Posts.js';
+import postRoutes from './routes/posts.js';
 
 const app = express();
 dotenv.config();
 
 
 // app middleware
+//morgan used for logging
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))

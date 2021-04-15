@@ -1,49 +1,81 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState, useEffect, useDebugValue } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import dotenv from "dotenv";
 
 import Layout from "../core/Layout";
-import { authenticate, isAuth } from "../auth/Helpers";
-
+import { authenticate, getCookie, isAuth, signout, updateUser } from "../auth/Helpers";
 
 dotenv.config();
 
-const Private = () => {
+const Private = ({ history }) => {
   const [values, setValues] = useState({
-    role:"sub",
-    name:isAuth().name,
-    email: isAuth().email,
-    password:"**************",
-    buttonText: "submit",
+    role: "",
+    name: "",
+    email: "",
+    password: "",
+    buttonText: "Submit",
   });
-  const { role,name, email, password, buttonText } = values;
+
+  const loadProfile = async () => {
+    try {
+      // fet the logged in user data
+      const { data: userDetails } = await axios.get(
+        `${process.env.REACT_APP_API}/user/${isAuth()._id}`,
+        { headers: { Authorization: `Bearer ${getCookie("token")}` } }
+      );
+
+      const { name, role, email } = userDetails;
+
+      // update the user state with fetched data
+      setValues({ ...values, role, name, email });
+    } catch (error) {
+      console.log(error.message);
+
+      // if token expired then singout the user and push them to home page
+      if (error.response.status === 401) {
+        signout(() => {
+          history.push("/");
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const { role, name, email, password, buttonText } = values;
 
   const handleChange = (field) => (event) => {
     //check the field whether it is name,email,password and change state accordingly
     setValues({ ...values, [field]: event.target.value });
   };
 
-  const clickSubmit = event => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, buttonText: "Submitting" });
     axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_API}/signup`,
-      data: { name, email, password },
-    }).then((response) => {
-        console.log("signup success", response);
-        setValues({
-          ...values,
-          name: "",
-          email: "",
-          password: ""
+      method: "PUT",
+      url: `${process.env.REACT_APP_API}/user/update`,
+      data: { name, password },
+      headers: { Authorization: `Bearer ${getCookie("token")}` },
+    })
+      .then((response) => {
+        console.log("profile update", response);
+        updateUser(response,()=>{
+          setValues({
+            ...values,
+            buttonText: "submitted",
+          });
+          toast.success("profile updated successfully");
         });
-        toast.success(response.data.message);
-      }).catch((error) => {
-        console.log("signup error", error.response.data);
+
+      })
+      .catch(error=> {
+        console.log("profile update error", error.response.data.error);
+        
         setValues({ ...values, buttonText: "Submit" });
         toast.error(error.response.data.error);
       });
@@ -51,10 +83,10 @@ const Private = () => {
 
   const updateForm = () => (
     <form>
-          <div className="form-group">
+      <div className="form-group">
         <label className="text-muted">Name</label>
-        <input       
-         disabled={true}
+        <input
+          disabled={true}
           defaultValue={role}
           type="text"
           className="form-control"
@@ -72,8 +104,8 @@ const Private = () => {
       <div className="form-group">
         <label className="text-muted">Email</label>
         <input
-        disabled={true}
-          defaultValue={email}  
+          disabled={true}
+          defaultValue={email}
           type="email"
           className="form-control"
         />
@@ -85,6 +117,7 @@ const Private = () => {
           defaultValue={password}
           type="password"
           className="form-control"
+          placeholder="enter new password"
         />
       </div>
       <div>

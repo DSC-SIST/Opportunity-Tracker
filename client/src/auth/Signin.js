@@ -7,10 +7,11 @@ import dotenv from "dotenv";
 
 import Layout from "../core/Layout";
 import { authenticate, isAuth } from "./Helpers";
+import Google from "./Google";
 
 dotenv.config();
 
-const Signin = ({history}) => {
+const Signin = ({ history }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -21,6 +22,14 @@ const Signin = ({history}) => {
   const handleChange = (field) => (event) => {
     //check the field whether it is name,email,password and change state accordingly
     setValues({ ...values, [field]: event.target.value });
+  };
+
+  const informParent = response => {
+    authenticate(response, () => {
+      isAuth() && isAuth().role === "admin"
+        ? history.push("/admin")
+        : history.push("/");
+    });
   };
 
   const clickSubmit = (event) => {
@@ -39,7 +48,9 @@ const Signin = ({history}) => {
             email: "",
             password: "",
           });
-          isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private')
+          isAuth() && isAuth().role === "admin"
+            ? history.push("/admin")
+            : history.push("/");
         });
       })
       .catch((error) => {
@@ -50,7 +61,7 @@ const Signin = ({history}) => {
   };
 
   const signinForm = () => (
-    <form className="vh-100" >
+    <form>
       <div className="form-group">
         <label className="text-muted">Email</label>
         <input
@@ -69,8 +80,8 @@ const Signin = ({history}) => {
           className="form-control"
         />
       </div>
-      <div>
-        <button className="btn btn-primary mt-2" onClick={clickSubmit}>
+      <div className="d-flex justify-content-center mt-3">
+        <button className="btn btn-primary mt-2 w-50" onClick={clickSubmit}>
           {buttonText}
         </button>
       </div>
@@ -79,12 +90,27 @@ const Signin = ({history}) => {
 
   return (
     <Layout>
-      {JSON.stringify(isAuth("user"))}
-      <div className="col-md-6 offset-md-3">
+      <div className="col-md-6 offset-md-3 vh-100">
         <ToastContainer />
-        {isAuth() ? <Redirect to="/"/> : null}
-        <h1 className="p-5 text-center ">Signin</h1>
+        {isAuth() ? <Redirect to="/" /> : null}
+        <h1 className="p-5 text-center ">Opportunity Tracker</h1>
+
         {signinForm()}
+        <Google text="Login With Google" informParent={informParent}/>
+        <div className="d-flex justify-content-center flex-column mt-5">
+          <Link to="/signup" className="text-center text-decoration-none">
+            
+            <h4 className=" btn btn-outline-info ">
+              Don't have an account? Sign up
+            </h4>
+          </Link>
+          <Link
+            to="/auth/password/forgot"
+            className="text-center text-decoration-none"
+          >
+           <h4 className="btn btn-outline-danger ">Forgot password ?</h4>
+          </Link>
+        </div>
       </div>
     </Layout>
   );

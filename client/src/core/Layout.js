@@ -87,10 +87,11 @@ const Layout = ({ children, match, history }) => {
     );
   };
   return (
-    <Fragment style={{overflowY:"scroll"}}>
+    <div >
       {nav()}
-      <div style={{backgroundColor:"#E3E3E3", height:"100%"}}>{children}</div>
-    </Fragment>
+      <div 
+      style={{backgroundColor:"#E3E3E3", height:"100%"}}>{children}</div>
+    </div>
   );
 };
 

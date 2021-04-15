@@ -10,20 +10,19 @@ import Layout from "../core/Layout";
 
 dotenv.config();
 
-const Activate = ({match}) => {
+const Activate = ({ match }) => {
   const [values, setValues] = useState({
     name: "",
     token: "",
     show: true,
   });
-  useEffect(()=> {
-      const token = match.params.token
-      let {name} = jwt.decode(token)
-      if(token){
-          setValues({...values, name,token})
-      }
-  },[])
-
+  useEffect(() => {
+    const token = match.params.token;
+    let { name } = jwt.decode(token);
+    if (token) {
+      setValues({ ...values, name, token });
+    }
+  }, []);
 
   const { name, token, show } = values;
 
@@ -39,7 +38,7 @@ const Activate = ({match}) => {
         console.log("account activation success", response);
         setValues({
           ...values,
-          show:false
+          show: false,
         });
         toast.success(response.data.message);
       })
@@ -49,13 +48,10 @@ const Activate = ({match}) => {
       });
   };
 
-
   const activationLink = () => (
     <div className="text-center ">
-      <h1 className="p-5  ">
-        Hey {name}, Ready to acivate you account
-      </h1>
-      <button className="btn btn-outline-primary" onClick={clickSubmit}>
+      <h1 className="p-5  ">Hey {name}, Ready to acivate you account</h1>
+      <button className="btn btn-primary" onClick={clickSubmit}>
         Activate Account
       </button>
     </div>
@@ -63,10 +59,14 @@ const Activate = ({match}) => {
 
   return (
     <Layout>
-      <div className="col-md-6 offset-md-3">
+      <div className="col-md-6 offset-md-3 vh-100">
         <ToastContainer />
 
         {activationLink()}
+        <Link to="/">
+
+          <button className="btn btn-primary mt-5" style={{display: "block", margin: "auto"}}>Maybe Later</button>
+        </Link>
       </div>
     </Layout>
   );
