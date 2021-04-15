@@ -8,7 +8,7 @@ const Posts = (props) => {
   const [posts, setPosts] = useState([]);
   const getPosts = async () => {
     try {
-      const userPosts = await axios.get("http://localhost:8000/api/post/");
+      const userPosts = await axios.get(`${process.env.REACT_APP_API}/post`);
       setPosts(userPosts.data.reverse()); // set State
     } catch (err) {
       console.error(err.message);
