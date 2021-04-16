@@ -4,12 +4,6 @@ import "./style.css";
 
 const Post = ({ post }) => {
 
-  const handleLike = (event) => {
-    const isLiked = (event.target.className ===  "bi bi-hand-thumbs-up mx-2") ? 'bi bi-hand-thumbs-up-fill mx-2' :'bi bi-hand-thumbs-up mx-2';
-    event.target.className = isLiked ;
-    
-  }
-
   const handleBookmark = (event) => {
     const isBookmarked = (event.target.className ===  "bi bi-bookmark mx-2") ? 'bi bi-bookmark-fill mx-2' :'bi bi-bookmark mx-2';
     event.target.className = isBookmarked;
@@ -27,11 +21,6 @@ const Post = ({ post }) => {
 
         <div className="d-flex justify-content-between mt-1  ">
           <div className="mt-2">
-            <i
-              className="bi bi-hand-thumbs-up mx-2 "
-              style={{ fontSize: "1.5rem" }}
-              onClick={handleLike}
-            ></i>
 
             <i
               className="bi bi-bookmark mx-2"
