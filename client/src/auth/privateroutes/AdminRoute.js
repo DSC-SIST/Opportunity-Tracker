@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isAuth } from "../Helpers";
 
+
+// checks if the user is admin or not and redirects the user accordingly
 const AdminRoute = ({ component: Component, ...rest }) => (
 
     <Route

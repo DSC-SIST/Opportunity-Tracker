@@ -5,12 +5,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+
+
 const Google = ({ text,informParent=f=>f }) => {
   const responseGoogle = (response) => {
     
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API}/google-login`,
+      url: `${process.env.REACT_APP_DEPLOYED_API}/google-login`,
       data: { idToken: response.tokenId }
     }).then((response) => {
         console.log("Google Signin success",response);

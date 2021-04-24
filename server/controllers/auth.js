@@ -165,6 +165,7 @@ export const adminMiddleware = (req, res, next) => {
   });
 };
 
+// handles forgot password and send a reset link
 export const forgotPassword = (req, res) => {
   const { email } = req.body;
   User.findOne({ email }).exec((err, user) => {
@@ -219,6 +220,8 @@ export const forgotPassword = (req, res) => {
   });
 };
 
+
+// verifies the resest link and update the user with new password
 export const resetPassword = (req, res) => {
   const { resetPasswordLink, newPassword } = req.body;
 
@@ -264,6 +267,8 @@ export const resetPassword = (req, res) => {
   }
 };
 
+
+// handles google login
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 export const googleLogin = (req, res) => {
   const { idToken } = req.body;

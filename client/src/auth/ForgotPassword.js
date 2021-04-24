@@ -24,7 +24,7 @@ const ForgotPassword = ({history}) => {
     setValues({ ...values, buttonText: "Submitting" });
     axios({
       method: "PUT",
-      url: `${process.env.REACT_APP_API}/forgot-password`,
+      url: `${process.env.REACT_APP_DEPLOYED_API}/forgot-password`,
       data: { email },
     })
       .then((response) => {

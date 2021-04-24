@@ -31,7 +31,7 @@ const ResetPassword = ({match,history}) => {
         setValues({ ...values, buttonText: "Resetting Password" });
         axios({
           method: "PUT",
-          url: `${process.env.REACT_APP_API}/reset-password`,
+          url: `${process.env.REACT_APP_DEPLOYED_API}/reset-password`,
           data: { newPassword, resetPasswordLink:token },
         })
           .then((response) => {

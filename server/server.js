@@ -29,7 +29,7 @@ app.use('/api', authRoutes);
 app.use('/api',userRoutes);
 app.use('/api',postRoutes)
 
-
+// connecting to database
 const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT|| 8000;
 

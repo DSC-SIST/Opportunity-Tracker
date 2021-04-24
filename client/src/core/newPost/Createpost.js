@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import dotenv from "dotenv";
 import Layout from "../Layout";
 
+dotenv.config()
 // import { authenticate, isAuth } from "./Helpers";
 
 const Createpost = (props) => {
@@ -44,7 +45,7 @@ const Createpost = (props) => {
     setValues({ ...values, buttonText: "Submitting" });
     axios({
       method: "POST",
-      url: `${process.env.REACT_APP_API}/post`,
+      url: `${process.env.REACT_APP_DEPLOYED_API}/post`,
       data: { name, description, detailsLink, registrationLink, category },
     })
       .then((response) => {

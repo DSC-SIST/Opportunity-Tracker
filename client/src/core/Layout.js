@@ -90,7 +90,7 @@ const Layout = ({ children, match, history }) => {
     <div >
       {nav()}
       <div 
-      style={{backgroundColor:"#E3E3E3", height:"100%"}}>{children}</div>
+      >{children}</div>
     </div>
   );
 };

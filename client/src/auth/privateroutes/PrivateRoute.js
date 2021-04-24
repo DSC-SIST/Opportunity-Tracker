@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isAuth } from "../Helpers";
 
-// using render instead of conmponent because of inner logic
+// checks if the user in signined or not and redirects the user accordingly
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}

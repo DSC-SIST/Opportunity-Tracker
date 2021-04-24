@@ -37,7 +37,7 @@ const Signin = ({ history }) => {
     setValues({ ...values, buttonText: "Submitting" });
     axios({
       method: "POST",
-      url: `${process.env.REACT_APP_API}/signin`,
+      url: `${process.env.REACT_APP_DEPLOYED_API}/signin`,
       data: { email, password },
     })
       .then((response) => {

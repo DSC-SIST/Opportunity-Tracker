@@ -1,7 +1,7 @@
 import  mongoose  from 'mongoose';
 import  Posts from '../models/posts.js'
 
-
+// fetch all posts from post database
 export const getPosts = async (req, res) => {
 
     try {
@@ -13,6 +13,7 @@ export const getPosts = async (req, res) => {
     }
 }
 
+// create a new post in post databae
 export const createPost = async (req, res) => {
 
     const post = req.body;
@@ -29,6 +30,7 @@ export const createPost = async (req, res) => {
     }
 }
 
+// update a specific post in post database
 export const updatePost = async(req,res) =>{
     const {id:_id} = req.params;
 
@@ -45,6 +47,7 @@ export const updatePost = async(req,res) =>{
      
 }
 
+// delete a specific post
 export const deletePost = async (req,res)=>{
     const {id} = req.params;
     
@@ -55,18 +58,18 @@ export const deletePost = async (req,res)=>{
 
     res.json({message:'Post Deleted Successfully'});
 }
-export const likePost = async (req,res)=>{
-    const {id} = req.params;
+// export const likePost = async (req,res)=>{
+//     const {id} = req.params;
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+//     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
 
-    const post = await Posts.findById(id);
+//     const post = await Posts.findById(id);
 
-    const updatedPost = await Posts.findByIdAndUpdate(id,{likeCount: post.likeCount+1},{new:true});
+//     const updatedPost = await Posts.findByIdAndUpdate(id,{likeCount: post.likeCount+1},{new:true});
     
-    res.json(updatedPost);
-};
+//     res.json(updatedPost);
+// };
 
 
 
