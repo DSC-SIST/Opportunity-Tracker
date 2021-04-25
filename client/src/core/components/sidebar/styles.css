@@ -1,0 +1,20 @@
+.side-bar {   
+    margin-top: 15px;
+    border-radius: 15px;
+    width: fit-content;
+    height: fit-content;
+    background-color:#e4e4e4 ;
+    float: right;
+    padding: 10px;
+}
+.new-post {
+    
+    border-radius: 5px;
+}
+
+li{
+     list-style: none;
+     line-height: 2rem;
+     cursor: pointer;
+ }
+
