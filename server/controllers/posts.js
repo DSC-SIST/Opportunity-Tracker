@@ -1,4 +1,3 @@
-import { json } from "body-parser";
 import mongoose from "mongoose";
 import Posts from "../models/posts.js";
 import savedPosts from "../models/savedposts.js";
